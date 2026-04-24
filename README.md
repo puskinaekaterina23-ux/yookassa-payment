@@ -1,1 +1,1 @@
-# yookassa-payment
+# yookassa-payment-six
