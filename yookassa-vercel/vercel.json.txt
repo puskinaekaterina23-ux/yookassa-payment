@@ -6,5 +6,17 @@
     "api/webhook.php": {
       "runtime": "vercel-php@0.6.0"
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "/api/index.php",
+      "methods": ["POST", "OPTIONS"],
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/api/webhook.php",
+      "methods": ["POST", "GET", "OPTIONS"],
+      "dest": "/api/webhook.php"
+    }
+  ]
 }
