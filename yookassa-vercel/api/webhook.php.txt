@@ -1,0 +1,18 @@
+<?php
+// api/webhook.php
+$webhookData = json_decode(file_get_contents('php://input'), true);
+
+$log = date('Y-m-d H:i:s') . ' - ' . file_get_contents('php://input') . "\n";
+file_put_contents('/tmp/yookassa_log.txt', $log, FILE_APPEND);
+
+if (isset($webhookData['event']) && $webhookData['event'] === 'payment.succeeded') {
+    $payment = $webhookData['object'];
+    $orderId = $payment['metadata']['order_id'] ?? 'неизвестен';
+    
+    $successLog = date('Y-m-d H:i:s') . " - Заказ {$orderId} оплачен!\n";
+    file_put_contents('/tmp/payments_success.txt', $successLog, FILE_APPEND);
+}
+
+http_response_code(200);
+echo 'OK';
+?>
