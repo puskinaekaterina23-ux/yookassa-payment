@@ -9,13 +9,21 @@
   },
   "routes": [
     {
+      "src": "/api/(.*)",
+      "methods": ["POST", "GET", "OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type"
+      },
+      "continue": true
+    },
+    {
       "src": "/api/index.php",
-      "methods": ["POST", "OPTIONS"],
       "dest": "/api/index.php"
     },
     {
       "src": "/api/webhook.php",
-      "methods": ["POST", "GET", "OPTIONS"],
       "dest": "/api/webhook.php"
     }
   ]
